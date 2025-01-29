@@ -93,6 +93,11 @@ def plot_frames(data, backend='matplotlib', mode='mosaic', rows=1, vmax=None,
         [backend='matplotlib'] Alpha transparency for each circle.
     circle_color : str, optional
         [backend='matplotlib'] Color of the circles. White by default.
+    circle_linestyle: str, or tuple of tuples, optional
+        [backend='matplotlib'] Linestyle for the circles. If a tuple, should
+        have the format: (offset, (ls1, ls2,..., lsn)), where offset is the
+        vertical offset used for printing a label associated to the circle (see
+        below) and n is the number of circles of input argument `circle`.
     circle_radius : int, optional
         [backend='matplotlib'] Radius of the circles, 6 px by default.
     circle_label : bool or string, optional
@@ -665,7 +670,8 @@ def plot_frames(data, backend='matplotlib', mode='mosaic', rows=1, vmax=None,
                         circle_linestyle_tmp = circle_linestyle
                     circ = Circle(coor_circle[j], radius=circle_radius[j],
                                   fill=False, color=circle_color_tmp,
-                                  alpha=circle_alpha[j], ls=circle_linestyle_tmp)
+                                  alpha=circle_alpha[j],
+                                  ls=circle_linestyle_tmp)
                     ax.add_artist(circ)
                     if circle_label:
                         x = coor_circle[j][0]
