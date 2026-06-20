@@ -57,7 +57,7 @@ def plot_frames(data, backend='matplotlib', mode='mosaic', rows=1, vmax=None,
                 colorbar_label='', colorbar_label_size=8, patch=None, dpi=100,
                 size_factor=6, horsp=0.4, versp=0.2, width=400, height=400,
                 title=None, tit_size=16, sampling=1, save=None,
-                return_fig_ax=False, transparent=False):
+                return_fig_ax=False, transparent=False, cen_convention='VIP'):
     """ Plot a 2d array or a tuple of 2d arrays. Supports the ``matplotlib`` and
     ``bokeh`` backends. When having a tuple of 2d arrays, the plot turns into a
     mosaic. For ``matplotlib``, instead of a mosaic of images, we can create a
@@ -257,6 +257,11 @@ def plot_frames(data, backend='matplotlib', mode='mosaic', rows=1, vmax=None,
     transparent : bool, optional
         [save=True] Whether to have a transparent background between subplots.
         If False, then a white background is shown.
+    cen_convention: str, optional, {'VIP', 'between_pixels'}
+        Convention regarding assumed center in the case of an even-size array.
+        By default, consistent with VIP convention of considering the top-right
+        pixel among the 4 central pixels (FT-based convention). Set to 
+        'between_pixels' to consider the locus between the 4 central pixels.
 
     """
     def check_bool_param(param, name):
@@ -549,8 +554,12 @@ def plot_frames(data, backend='matplotlib', mode='mosaic', rows=1, vmax=None,
         for i, v in enumerate(range(num_plots)):
             image = np.copy(data[i])
             frame_size = image.shape[0]  # assuming square frames
-            cy = image.shape[0] / 2 - 0.5
-            cx = image.shape[1] / 2 - 0.5
+            cy = image.shape[0] / 2
+            cx = image.shape[1] / 2
+            if image.shape[0]%2 or cen_convention != 'VIP':
+                cy -= 0.5
+            if image.shape[1]%2 or cen_convention != 'VIP':
+                cx -= 0.5
             v += 1
 
             if plot_mosaic:
