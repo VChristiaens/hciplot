@@ -105,15 +105,14 @@ def plot_frames(data, backend='matplotlib', mode='mosaic', rows=1, vmax=None,
         circle. If a string: the string to be printed. If a tuple, should be
         a tuple of strings with same length as 'circle'.
     circle_label_color : str, optional
-        [backend='matplotlib'] Default 'white'. Sets the color of the circle
-        label
+        [backend='matplotlib'] Color of the circle label. Default 'white'.
     ellipse : None, tuple or tuple of tuples, optional
-        [backend='matplotlib'] To show a circle at the given px coordinates. The
-        circles are shown on all subplots.
+        [backend='matplotlib'] To show an ellipse at the given px coordinates.
+        The ellipses are shown on all subplots.
     ellipse_alpha : float or tuple of floats, optional
-        [backend='matplotlib'] Alpha transparency for each circle.
+        [backend='matplotlib'] Alpha transparency for each ellipse.
     ellipse_color : str, optional
-        [backend='matplotlib'] Color of the circles. White by default.
+        [backend='matplotlib'] Color of the ellipses. White by default.
     ellipse_a : int, optional
         [backend='matplotlib'] Major axis of the ellipses, 6 px by default.
     ellipse_b : int, optional
@@ -123,11 +122,10 @@ def plot_frames(data, backend='matplotlib', mode='mosaic', rows=1, vmax=None,
         default.
     ellipse_label : bool or string, optional
         [backend='matplotlib'] Whether to show the coordinates next to each
-        circle. If a string: the string to be printed. If a tuple, should be
-        a tuple of strings with same length as 'circle'.
+        ellipse. If a string: the string to be printed. If a tuple, should be
+        a tuple of strings with same length as 'ellipse'.
     ellipse_label_color : str, optional
-        [backend='matplotlib'] Default 'white'. Sets the color of the circle
-        label
+        [backend='matplotlib'] Color of the ellipse label. Default 'white'.
     arrow : None or tuple of floats, optional
         [backend='matplotlib'] To show an arrow pointing to the given pixel
         coordinates.
